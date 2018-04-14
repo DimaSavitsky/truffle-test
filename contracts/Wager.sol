@@ -7,18 +7,13 @@ contract Wager {
     address public acceptor;
     uint public amount;
 
-    event WagerProposed(address initiator, address judge, uint amount);
-    event WagerTaken(address acceptor, uint amount);
-
-    function Wager(address initiatorAdress, address trustedAddress) public payable {
+    function Wager(address initiatorAdress) public payable {
       require(msg.value > 0);
-      require(initiatorAdress != trustedAddress);
+      require(initiatorAdress != msg.sender);
       amount = msg.value;
       pending = true;
       initiator = initiatorAdress;
-      judge = trustedAddress;
-
-      emit WagerProposed(initiator, judge, amount);
+      judge = msg.sender;
     }
 
     function viewConditions() public view returns (uint, address, address) {
@@ -48,7 +43,6 @@ contract Wager {
     function changeJudge(address newAddress) public onlyInitiator onlyPending {
       require(newAddress != judge);
       judge = newAddress;
-      emit WagerProposed(initiator, judge, amount);
     }
 
     function changeAmount(uint newAmount) public payable onlyInitiator onlyPending {
@@ -57,14 +51,12 @@ contract Wager {
         initiator.transfer(amount - newAmount);
       }
       amount = newAmount;
-      emit WagerProposed(initiator, judge, amount);
     }
 
     function takeWager() public payable onlyPending {
       require(msg.value == amount);
       acceptor = msg.sender;
       pending = false;
-      emit WagerTaken(acceptor, amount);
     }
 
     function pickWinner(bool initiatorWon) public onlyNotPending onlyJudge {

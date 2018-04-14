@@ -22,7 +22,7 @@ contract WagerFactory {
   }
 
   function offerWager() public payable {
-    Wager newWager = (new Wager).value(msg.value)(msg.sender, factoryOwner);
+    Wager newWager = (new Wager).value(msg.value)(msg.sender);
     wagers.push(address(newWager));
   }
 }
