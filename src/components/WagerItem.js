@@ -72,13 +72,13 @@ class WagerItem extends Component {
 
     processResolving() {
         this.props.instance.pickWinner({
-            value: 2000000,
+            value: 200000,
             from: window.web3.eth.defaultAccount,
             gas: 5000000,
             gas_price: 5
         }).then((result) => {
             if (result.tx) {
-                this.updateStatus()
+               setTimeout(this.updateStatus(), 20000);
             }
         })
     }
