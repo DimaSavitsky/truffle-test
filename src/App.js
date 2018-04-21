@@ -12,7 +12,7 @@ import './App.css'
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       wagerFactoryInstance: null,
@@ -28,7 +28,7 @@ class App extends Component {
     .then(results => {
       this.setState({
         web3: results.web3
-      })
+      });
 
       // Instantiate contract once web3 provided.
       this.instantiateContract()
@@ -39,9 +39,9 @@ class App extends Component {
   }
 
   instantiateContract() {
-    const contract = require('truffle-contract')
-    const wagerFactory = contract(WagerFactoryContract)
-    wagerFactory.setProvider(this.state.web3.currentProvider)
+    const contract = require('truffle-contract');
+    const wagerFactory = contract(WagerFactoryContract);
+    wagerFactory.setProvider(this.state.web3.currentProvider);
 
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   render() {
-    var stuffToRender
+    var stuffToRender;
     if (this.state.wagerFactoryInstance) {
       stuffToRender = <Deployed factoryInstance={this.state.wagerFactoryInstance}/>
     } else {

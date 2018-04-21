@@ -3,7 +3,7 @@ import WagerList from './WagerList'
 
 class Deployed extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       owner: 'Unknown',
