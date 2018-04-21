@@ -56,9 +56,9 @@ class WagerList extends Component {
   }
 
   processCreation() {
-    // 1 Finney value , 10 GWei gas
+    // 5 Ether value , 10 GWei gas
     this.props.factoryInstance.offerWager({
-      value: 1000000000000000,
+      value: 5000000000000000000,
       from: window.web3.eth.defaultAccount,
       gas: 5000000,
       gas_price: 5
@@ -90,7 +90,7 @@ class WagerList extends Component {
           { wagerListItems }
         </ul>
         <div>
-          <Button bsStyle="success" onClick={this.processCreation}>Make a Wager of 1 Finney</Button>
+          <Button bsStyle="success" onClick={this.processCreation}>Make a Wager of 5 Ether</Button>
         </div>
       </div>
     )
