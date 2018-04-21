@@ -86,7 +86,7 @@ class WagerItem extends Component {
     render() {
         var actionToRender;
         if (this.state.resolved) {
-            actionToRender = <div><p>Wager Resolved</p><p>Winner: {this.winnerAddress}</p></div>
+            actionToRender = <div><p>Wager Resolved</p><p>Winner: {this.state.winnerAddress}</p></div>
         } else {
             if (this.state.pending) {
                 actionToRender = <Button bsStyle="success" onClick={this.processAccepting}>Accept</Button>

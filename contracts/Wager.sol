@@ -77,7 +77,7 @@ contract Wager is usingOraclize {
         oraclize_query("URL", "json(http://api.icndb.com/jokes/random).value.id");
     }
 
-    function _callback(bytes32 , string result) public {
+    function __callback(bytes32 myid, string result) public {
         require(msg.sender == oraclize_cbAddress());
 
         winner = (bytes(result).length / 2 == 1) ? initiator : acceptor;
